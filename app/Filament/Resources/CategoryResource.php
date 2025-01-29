@@ -23,7 +23,17 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // Campo para el nombre de la categoría
+            Forms\Components\TextInput::make('name')
+            ->label('Nombre')
+            ->required()
+            ->maxLength(255),
+
+        // Campo para la descripción de la categoría
+        Forms\Components\TextInput::make('description')
+            ->label('Descripción')
+            ->nullable()
+            ->maxLength(255),
             ]);
     }
 
@@ -31,7 +41,15 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                 // Mostrar la columna 'name'
+            Tables\Columns\TextColumn::make('name')
+            ->label('Nombre')
+            ->searchable(),  // Hacer que esta columna sea buscable
+
+        // Mostrar la columna 'description'
+        Tables\Columns\TextColumn::make('description')
+            ->label('Descripción')
+            ->limit(50),  // Limitar el texto que se muestra
             ])
             ->filters([
                 //
